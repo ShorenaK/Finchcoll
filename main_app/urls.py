@@ -13,4 +13,5 @@ urlpatterns = [
  path('finchcolls/<int:pk>/location/new/',views.LocationCreate.as_view(), name="location_create"),
  path('seasons/<int:pk>/locations/<int:location_pk>/', 
 views.SeasonLocationAssoc.as_view(), name="season_location_assoc"),
+path('accounts/signup/', views.Signup.as_view(), name="signup")
 ]

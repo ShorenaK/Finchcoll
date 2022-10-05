@@ -7,6 +7,10 @@ from django.views.generic.base import TemplateView
 from .models import Finchcoll, Location, Season
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 # Create your views here.
 class Home(TemplateView):
     template_name = "home.html"
@@ -21,7 +25,7 @@ class About(TemplateView):
     template_name = "about.html"
 
 
-
+@method_decorator(login_required, name='dispatch')
 class FinchcollList(TemplateView):
     template_name = "finchcoll_list.html"
 
@@ -34,7 +38,7 @@ class FinchcollList(TemplateView):
             context["finchcolls"] = Finchcoll.objects.filter(name__icontains=name)
             context["header"] = f"Searching for {name}"
         else:
-            context["finchcolls"] = Finchcoll.objects.all()
+            context["finchcolls"] = Finchcoll.objects.filter(user=self.request.user)
             context["header"] = "The Best Birds"
         return context
         
@@ -42,6 +46,11 @@ class FinchcollCreate(CreateView):
     model = Finchcoll
     fields = ['name', 'image', 'bio', 'verified_artist']
     template_name = "finchcoll_create.html"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(FinchcollCreate, self).form_valid(form)
+
     def get_success_url(self):
         return reverse('finchcoll_detail', kwargs={'pk': self.object.pk})
         
@@ -92,6 +101,22 @@ class  SeasonLocationAssoc(View):
 
 
 
+class Signup(View):
+    # show a form to fill out
+    def get(self, request):
+        form = UserCreationForm()
+        context = {"form": form}
+        return render(request, "registration/signup.html", context)
+    # on form submit, validate the form and login the user.
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("finchcoll_list")
+        else:
+            context = {"form": form}
+            return render(request, "registration/signup.html", context)
 
 
        
