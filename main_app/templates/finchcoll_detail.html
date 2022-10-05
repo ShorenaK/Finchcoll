@@ -1,0 +1,107 @@
+{% extends 'base.html' %} 
+{% block title %} {{finchcoll.name}} {% endblock %}
+{% block content %}
+<div class="detail__img">
+    <img src="{{finchcoll.image}}" alt="{{finchcoll.name}}" />
+</div>
+<div class="detail__name">
+    {% if finchcoll.verified_artist %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>Verified</span>
+    </div>
+    {% endif %}
+    <h1 class="title">{{finchcoll.name}}</h1>
+</div>
+<div class="detail__container">
+  
+    <div class="detail__songs mb-5">
+        <h3 class="title is-3">Locations</h3>
+        {% for location in finchcoll.location.all %}
+            <div class="song">
+                <span>{{forloop.counter}}</span>
+                <span><b>{{location.location_name}}</b></span>
+            </div>
+            <span>
+                <div class="dropdown">
+                  <div class="dropdown-trigger">
+                    <button
+                      class="button"
+                      aria-haspopup="true"
+                      aria-controls="dropdown-menu"
+                    >
+                      <span>Add to Season</span>
+                      <span class="icon is-small">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                      </span>
+                    </button>
+                  </div>
+                  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                    <div class="dropdown-content">
+                        {% for season in seasons %}
+                  <!-- each playlist becomes a drop
+                  down item with the ids needed to add to the join table  -->
+                      <a
+                        href="{% url 'season_location_assoc' season.pk location.pk %}?assoc=add" 
+                        class="dropdown-item"
+                      >
+                      {{season.season_name}}
+                      </a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </span>
+
+        {% empty %}
+            <article class="message">
+                <div class="message-header">
+                    <p>No Locations Available</p>
+                </div>
+            </article>
+
+        {% endfor %}
+    </div>
+
+    <form class="mb-5" action="{% url 'location_create' finchcoll.pk %}" method="post">
+        {% csrf_token %}
+        <div class="field has-addons">
+            <div class="control">
+                <input
+                    class="input"
+                    type="text"
+                    name="location_name"
+                    placeholder="Location Name"
+                    required
+                />
+            </div>
+            <div class="control">
+                <input class="button is-primary" type="submit" value="Add Location" />
+            </div>
+        </div>
+    </form>
+
+    <div class="buttons">
+        
+        <a href="{% url 'finchcoll_update' finchcoll.pk %}" class="button is-info">
+            <span class="icon">
+                <i class="fas fa-edit"></i>
+            </span>
+        </a>
+        <a href="/finchcolls/{{finchcoll.id}}/delete" class="button is-danger">
+            <span class="icon">
+                <i class="fas fa-trash-alt"></i>
+            </span>
+        </a>
+    </div>
+
+
+    <div class="detail__about">
+        <h4 class="title is-4">About</h4>
+        <p>{{finchcoll.bio}}</p>
+    </div>
+</div>
+
+{% endblock %}

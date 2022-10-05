@@ -1,0 +1,15 @@
+/.pytest_cache
+/.tox
+/build
+/dist
+/*.egg-info
+/htmlcov
+/docs/_build
+
+# Python cache.
+*.py[cod]
+__pycache__
+
+# Ignore codecoverage stuff.
+.coverage*
+coverage.xml
