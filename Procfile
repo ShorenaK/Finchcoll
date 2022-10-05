@@ -1,0 +1,1 @@
+web: gunicorn finchcoll_project.wsgi
