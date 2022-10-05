@@ -12,6 +12,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 # Create your views here.
+@method_decorator(login_required, name='dispatch')
 class Home(TemplateView):
     template_name = "home.html"
 # Here we will be creating a class called Home and extending it from the View class
@@ -41,10 +42,10 @@ class FinchcollList(TemplateView):
             context["finchcolls"] = Finchcoll.objects.filter(user=self.request.user)
             context["header"] = "The Best Birds"
         return context
-        
+@method_decorator(login_required, name='dispatch')      
 class FinchcollCreate(CreateView):
     model = Finchcoll
-    fields = ['name', 'image', 'bio', 'verified_artist']
+    fields = ['name', 'image', 'bio']
     template_name = "finchcoll_create.html"
 
     def form_valid(self, form):
@@ -53,7 +54,8 @@ class FinchcollCreate(CreateView):
 
     def get_success_url(self):
         return reverse('finchcoll_detail', kwargs={'pk': self.object.pk})
-        
+
+@method_decorator(login_required, name='dispatch')      
 class FinchcollDetail(DetailView):
     model = Finchcoll
     template_name = "finchcoll_detail.html"
@@ -64,7 +66,7 @@ class FinchcollDetail(DetailView):
 
 class FinchcollUpdate(UpdateView):
       model = Finchcoll
-      fields = ['name', 'image', 'bio', 'verified_artist']
+      fields = ['name', 'image', 'bio']
       template_name = "finchcoll_update.html"
       def get_success_url(self):
           return reverse('finchcoll_detail', kwargs={'pk': self.object.pk})

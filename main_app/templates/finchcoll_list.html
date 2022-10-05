@@ -2,22 +2,25 @@
 {% block title %} {{header}} {% endblock %}
 
 {% block content %}
-<h1 class="title pt-5">{{header}}</h1>
-<h1 class="title pt-5">Trending Birds</h1>
+<h1 class="title pt-5"></h1>
+<br>
+<h1 class="title pt-5">Trending Your Collection</h1>
+</br>
 <form class="mb-5" method="get">
   <div class="field has-addons">
-    
+    <br>
     <div class="control">
       <!--  Our input will search by name of artist  -->
-      <input class="input" type="text" name="name" placeholder="searhc for bird" />
+      <input class="input" type="text" name="name" placeholder="search for collection" />
     </div>
+  </br>
     <div class="control">
       <input class="button is-success" type="submit" value="Search" />
     </div>
   </div>
   <!--  This anchor tag will redirect back to artist list without a query param -->
-  <a class="button is-dark" href="{% url 'finchcoll_list' %}">Clear Search</a>
-  <a class="button is-dark" href="{% url 'finchcoll_create' %}">Add Bird</a>
+  <a class="button " href="{% url 'finchcoll_list' %}">Clear Search</a>
+  <a class="button " href="{% url 'finchcoll_create' %}">Add Collection</a>
 </form>
 <div class="gallery">
   {% for finchcoll in finchcolls %}
@@ -35,11 +38,34 @@
     </div>
  
 	{% empty %}
-  <article class="message">
-    <div class="message-header">
-      <p>No Finchcolls Available</p>
+  
+    <div >
+      <h2>No Finchcolls Available</h2>
     </div>
-  </article>
+
   {% endfor %}
 </div>
+
+<style>
+  body,
+  html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #7abecc;
+  
+  }
+  h1{
+font-size: 50px;
+color: #11333a;
+font-weight: 400;
+
+
+    }
+    h2{
+      font-size: 30px;
+     color: #5094a2;
+     font-weight: 400;
+    }
+  </style>
 {% endblock %}

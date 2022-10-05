@@ -1,15 +1,56 @@
 {% extends 'base.html' %} 
 {% block title %} Create new Finchcoll Bird {% endblock %}
 {% block content %}
-<h1>Add a Bird</h1>
-
+<h1>Add your collection here:</h1>
+<br>
 <form method="post">
 <!-- Security Feature  -->
   {% csrf_token %} 
 <!--  Generate inputs  -->
-  {{form.as_p}} 
+<br>
+ Name:
+  {{form.name.lable}} 
+  {{form.name}}
+</br>
+  <br>
+  Image:
+  {{form.image.lable}} 
+  {{form.image}}
+</br>
+  <br>
+  Descrip: 
+  {{form.bio.lable}} 
+  {{form.bio}}
+</br>
 <!--  Submit form  -->
+<br>
   <input type="submit" value="Submit" />
 </form>
 
+<style>
+  body,
+  html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #7abecc;
+      text-align: center;
+  }
+  h1{
+font-size: 50px;
+color: #11333a;
+font-weight: 400;
+text-align: center;
+
+    }
+    h2{
+      font-size: 30px;
+     color: #11333a;
+     font-weight: 400;
+    }
+  </style>
+
+
 {% endblock %}
+
+

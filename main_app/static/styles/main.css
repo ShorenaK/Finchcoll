@@ -1,9 +1,9 @@
-body {
-    background-color: hsl(105, 67%, 66%);
-    color: #ffffff;
-    min-height: 100vh;
-}
 
+body {
+  background-color: #7abecc ;
+
+  min-height: 100vh;
+}
 h1,
 h2,
 h3 {
@@ -34,16 +34,12 @@ p {
     font-size: 12px;
 }
 
-body {
- background-color: hsl(105, 67%, 72%);
-  color: #ffffff;
-  min-height: 100vh;
-}
 
 h1,
 h2,
 h3 {
   color: #ffffff;
+  font-size: large;
 }
 
 .container {
@@ -72,7 +68,7 @@ h3 {
 }
 
 p {
-  font-size: 12px;
+  font-size: 20px;
 }
 
 .detail__img {
@@ -87,7 +83,7 @@ p {
 
 .detail__img::after {
   content: "";
-  background-image: linear-gradient(transparent 60%, #1f1f1f);
+  background-image: linear-gradient(transparent 60%, #1db2a6);
   position: absolute;
   top: 0;
   left: 0;
@@ -139,3 +135,9 @@ image {
   grid-template-columns: 0.1fr 3fr 0.5fr 0.3fr;
   border-radius: 5px;
 }
+
+.navbar{
+  background-color: #11333a ;
+  color: #0b4c59 ;
+}
+
