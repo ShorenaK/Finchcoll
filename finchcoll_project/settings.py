@@ -16,8 +16,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()  # loads the configs from .env
 
-import django_heroku
-django_heroku.settings(locals())
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -135,3 +134,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR,'main_app/static')]
 LOGIN_REDIRECT_URL = '/finchcolls/'
 LOGOUT_REDIRECT_URL = '/'
+
+import django_heroku
+django_heroku.settings(locals())
