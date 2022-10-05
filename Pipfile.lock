@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "15692d7ac4610ad3efd5e598e596c3d6a32cd6695d4853c2738ee534c3d1da4c"
+            "sha256": "cf4ab09ea6d21cc8db959dce8cbc6556918ca0aa197a633d3aadee16b48ca89c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -54,6 +54,14 @@
             ],
             "index": "pypi",
             "version": "==20.1.0"
+        },
+        "load-dotenv": {
+            "hashes": [
+                "sha256:614803f720153fb8a5f97124a72aaa3930a67aa5547cbe8603d01ea7f9ac1adf",
+                "sha256:bbe5f40072d4a61eadca66de6c222df5a2d935d6d41b703be1ff75396f635145"
+            ],
+            "index": "pypi",
+            "version": "==0.1.0"
         },
         "psycopg2": {
             "hashes": [
@@ -136,6 +144,14 @@
             ],
             "index": "pypi",
             "version": "==2.9.3"
+        },
+        "python-dotenv": {
+            "hashes": [
+                "sha256:1684eb44636dd462b66c3ee016599815514527ad99965de77f43e0944634a7e5",
+                "sha256:b77d08274639e3d34145dfa6c7008e66df0f04b7be7a75fd0d5292c191d79045"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==0.21.0"
         },
         "setuptools": {
             "hashes": [
